@@ -10,15 +10,21 @@ export class CsvParserService {
   parse(csv) {
     let rows = csv.split(/\r\n|\n/);
     // Remove the headers row
-    rows.shift();
+    let headerRow = rows.shift().split(',');
+    let headerMap = dataHeaders();
+    let expectedHeader = Object.keys(headerMap).map(key => headerMap[key]);
+    console.log(headerRow, expectedHeader);
+    if (!(this.isEqual(headerRow, expectedHeader))) {
+      throw new Error('Invalid/Incorrect csv file format');
+    }
     // let headers = rows.shift().split(',');
-    let headers = Object.keys(dataHeaders());
+    let headers = Object.keys(headerMap);
     let data: Array<IData> = [];
 
     rows.forEach((row, rowIndex) => {
         let cells = row.split(',');
         let cellData: IData = <IData>{};
-        if(cells.length === headers.length) {
+        if (cells.length === headers.length) {
           cells.forEach((cell, cellIndex) => {
             cellData[headers[cellIndex]] = cell;
           });
@@ -27,5 +33,23 @@ export class CsvParserService {
     });
     console.log(data);
     return data;
+  }
+
+  private isEqual(a, b) {
+    if (a === b) {
+      return true;
+    }
+    if (a == null || b == null) {
+      return false;
+    }
+    if (a.length !== b.length) {
+      return false;
+    }
+    for (let i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) {
+        return false;
+      }
+    }
+    return true;
   }
 }

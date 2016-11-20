@@ -19,7 +19,11 @@ export class AppComponent {
 
   onData(e) {
     console.log(e);
-    this.data = this.csvParser.parse(e);
+    try {
+      this.data = this.csvParser.parse(e);
+    } catch (e) {
+      alert('Invalid/Incorrect csv file');
+    }
     console.log(this.dataValidator.validate(this.csvParser.parse(e)));
   }
 
