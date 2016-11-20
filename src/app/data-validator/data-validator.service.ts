@@ -14,14 +14,14 @@ export class DataValidatorService {
   }
 
   endBalanceCheck(data: Array<IData>): Array<IData> {
-    let invalidEndBalanceData = [];
+    let invalidEndBalanceData: Array<IData> = [];
     data.forEach((row) => {
-      if (row['Start Balance']) {
-        let startBalance = +row['Start Balance'];
-        let mutation = +row.Mutation;
+      if (row.startBalance && row.endBalance && row.mutation) {
+        let startBalance = +row.startBalance;
+        let mutation = +row.mutation;
         let endBalance = +(startBalance + mutation).toFixed(2);
 
-        if (endBalance !== +row['End Balance']) {
+        if (endBalance !== +row.endBalance) {
           invalidEndBalanceData.push(row);
         }
 
@@ -34,7 +34,7 @@ export class DataValidatorService {
     let sortedData = this.sortByReference(data);
     let duplicateReferenceData = [];
     sortedData.reduce((prev, curr) => {
-      if (prev.Reference === curr.Reference) {
+      if (prev.reference === curr.reference) {
         duplicateReferenceData.push(curr);
       }
       return curr;
@@ -42,13 +42,13 @@ export class DataValidatorService {
     return duplicateReferenceData;
   }
 
-  sortByReference(data: Array<IData>): Array<IData> {
+  private sortByReference(data: Array<IData>): Array<IData> {
     return data.sort((prev, curr) => {
-      if (prev.Reference > curr.Reference ) {
+      if (prev.reference > curr.reference ) {
         return 1;
       }
 
-      if (prev.Reference < curr.Reference ) {
+      if (prev.reference < curr.reference ) {
         return -1;
       }
 
