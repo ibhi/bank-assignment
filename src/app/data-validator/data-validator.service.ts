@@ -7,18 +7,21 @@ export class DataValidatorService {
   constructor() { }
 
   validate(data: Array<IData>) {
-    return this.endBalanceCheck(data);
+    return {
+      duplicateReference: this.duplicateReferenceCheck(data),
+      invalidEndBalance: this.endBalanceCheck(data)
+    };
   }
 
   endBalanceCheck(data: Array<IData>): Array<IData> {
     let invalidEndBalanceData = [];
     data.forEach((row) => {
-      if(row['Start Balance']) {
+      if (row['Start Balance']) {
         let startBalance = +row['Start Balance'];
         let mutation = +row.Mutation;
         let endBalance = +(startBalance + mutation).toFixed(2);
-        
-        if(endBalance !== +row['End Balance']) {
+
+        if (endBalance !== +row['End Balance']) {
           invalidEndBalanceData.push(row);
         }
 
@@ -31,7 +34,7 @@ export class DataValidatorService {
     let sortedData = this.sortByReference(data);
     let duplicateReferenceData = [];
     sortedData.reduce((prev, curr) => {
-      if(prev.Reference === curr.Reference) {
+      if (prev.Reference === curr.Reference) {
         duplicateReferenceData.push(curr);
       }
       return curr;
@@ -41,11 +44,11 @@ export class DataValidatorService {
 
   sortByReference(data: Array<IData>): Array<IData> {
     return data.sort((prev, curr) => {
-      if(prev.Reference > curr.Reference ) {
+      if (prev.Reference > curr.Reference ) {
         return 1;
       }
 
-      if(prev.Reference < curr.Reference ) {
+      if (prev.Reference < curr.Reference ) {
         return -1;
       }
 

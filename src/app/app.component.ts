@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CsvParserService } from './csv-parser/csv-parser.service';
-import { DataValidatorService } from './data-validator/data-validator.service'
+import { DataValidatorService } from './data-validator/data-validator.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
