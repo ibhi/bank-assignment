@@ -43,6 +43,7 @@ export class DataValidatorService {
   }
 
   private sortByReference(data: Array<IData>): Array<IData> {
+    data = [...data];
     return data.sort((prev, curr) => {
       if (prev.reference > curr.reference ) {
         return 1;

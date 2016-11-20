@@ -18,10 +18,12 @@ export class CsvParserService {
     rows.forEach((row, rowIndex) => {
         let cells = row.split(',');
         let cellData: IData = <IData>{};
-        cells.forEach((cell, cellIndex) => {
-          cellData[headers[cellIndex]] = cell;
-        });
-        data.push(cellData);
+        if(cells.length === headers.length) {
+          cells.forEach((cell, cellIndex) => {
+            cellData[headers[cellIndex]] = cell;
+          });
+          data.push(cellData);
+        }
     });
     console.log(data);
     return data;
