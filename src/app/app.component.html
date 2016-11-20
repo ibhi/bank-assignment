@@ -1,8 +1,12 @@
 <app-navbar [brandName]="brandName"></app-navbar>
 <div class="container-fluid">
   <div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <app-file-reader (onData)="onData($event)"></app-file-reader>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
-      <app-file-reader (onData)="onData($event)"></app-file-reader>
       <div *ngIf="data">
         <h2>Input Data</h2>
         <app-data-table [tableData]="data"></app-data-table>

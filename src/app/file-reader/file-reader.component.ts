@@ -5,13 +5,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './file-reader.component.html',
   styleUrls: ['./file-reader.component.css']
 })
-export class FileReaderComponent implements OnInit {
+export class FileReaderComponent {
   @Output() onData: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   handleFileSelect(event) {
 
