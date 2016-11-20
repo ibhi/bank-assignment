@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IData } from './../model/data.model';
+import { dataHeaders } from './data-headers';
 
 @Injectable()
 export class CsvParserService {
@@ -11,7 +12,7 @@ export class CsvParserService {
     // Remove the headers row
     rows.shift();
     // let headers = rows.shift().split(',');
-    let headers = ['reference', 'accountNumber', 'description', 'startBalance', 'mutation', 'endBalance'];
+    let headers = Object.keys(dataHeaders());
     let data: Array<IData> = [];
 
     rows.forEach((row, rowIndex) => {

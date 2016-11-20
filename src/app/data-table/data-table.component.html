@@ -1,0 +1,12 @@
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th *ngFor = "let header of headers">{{header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let row of tableData">
+      <td *ngFor = "let key of keys">{{row[key]}}</td>
+    </tr>
+  </tbody>
+</table>

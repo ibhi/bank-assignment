@@ -1,4 +1,26 @@
-<h1>
-  {{title}}
-</h1>
-<app-file-reader (onData) = "onData($event)"></app-file-reader>
+<app-navbar [brandName]="brandName"></app-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <app-file-reader (onData)="onData($event)"></app-file-reader>
+      <div *ngIf="data">
+        <app-data-table [tableData]="data"></app-data-table>
+        <button class="btn btn-primary" (click)="validate()">Validate</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="validatedResults">
+    <div class="row" *ngIf="validatedResults.duplicateReference">
+      <div class="col-md-12">
+        <h2>Duplicate Reference Numbers </h2>
+        <app-data-table [tableData]="validatedResults.duplicateReference"></app-data-table>
+      </div>
+    </div>
+    <div class="row" *ngIf="validatedResults.invalidEndBalance.length > 0">
+      <div class="col-md-12">
+        <h2>Invalid End Balance </h2>
+        <app-data-table [tableData]="validatedResults.invalidEndBalance"></app-data-table>
+      </div>
+    </div>
+  </div>
+</div>
