@@ -13,7 +13,7 @@ export class CsvParserService {
     let headerRow = rows.shift().split(',');
     let headerMap = dataHeaders();
     let expectedHeader = Object.keys(headerMap).map(key => headerMap[key]);
-    console.log(headerRow, expectedHeader);
+
     if (!(this.isEqual(headerRow, expectedHeader))) {
       throw new Error('Invalid/Incorrect csv file format');
     }
@@ -31,7 +31,7 @@ export class CsvParserService {
           data.push(cellData);
         }
     });
-    console.log(data);
+
     return data;
   }
 

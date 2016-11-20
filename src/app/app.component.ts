@@ -24,11 +24,10 @@ export class AppComponent {
     } catch (e) {
       alert('Invalid/Incorrect csv file');
     }
-    console.log(this.dataValidator.validate(this.csvParser.parse(e)));
   }
 
   validate() {
-    if (this.data) {
+    if (this.data || this.data.length > 0) {
       this.validatedResults = this.dataValidator.validate(this.data);
     }
   }

@@ -3,6 +3,6 @@ export interface IData {
     accountNumber: string;
     description: string;
     startBalance: number;
-    mutation: string;
+    mutation: number;
     endBalance: number;
 }
