@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FileReaderComponent } from './file-reader/file-reader.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DataTableComponent } from './data-table/data-table.component';
+
 @NgModule({
   declarations: [
     AppComponent,
