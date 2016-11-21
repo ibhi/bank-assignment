@@ -17,8 +17,7 @@ export class FileReaderComponent {
     if ( file.type === 'text/csv' || file.type === 'text/xml' ) {
       const reader: FileReader = new FileReader();
 
-      reader.onload = () => {
-        console.log(reader.result);
+      reader.onload = (e) => {
         this.onData.emit(reader.result);
       };
 
