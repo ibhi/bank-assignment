@@ -14,7 +14,7 @@ export class FileReaderComponent {
 
     const file: File = event.target.files[0];
 
-    if ( file.type === 'text/csv' || file.type === 'text/xml' ) {
+    if ( file.type === 'text/csv' ) {
       const reader: FileReader = new FileReader();
 
       reader.onload = (e) => {
@@ -22,6 +22,8 @@ export class FileReaderComponent {
       };
 
       reader.readAsText(file);
+    } else {
+      this.onData.emit('');
     }
 
   }

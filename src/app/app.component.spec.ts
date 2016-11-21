@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FileReaderComponent } from './file-reader/file-reader.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { CsvParserService } from './csv-parser/csv-parser.service';
-import { DataValidatorService } from './data-validator/data-validator.service';;
+import { DataValidatorService } from './data-validator/data-validator.service';
 import { IData } from './model/data.model';
 
 describe('Component: AppComponent', () => {
@@ -72,12 +72,12 @@ describe('Component: AppComponent', () => {
     let fileReader = de.query(By.directive(FileReaderComponent)).componentInstance;
     fileReader.onData.emit(mockData);
     // comp.onData(mockData);
-    fixture.detectChanges();
+    // fixture.detectChanges();
     expect(comp.data).toEqual(mockParsedData);
   }));
 
   it('should validate the assigned data', async(() => {
-    let mockParsedData: Array<IData> = [{
+    let mockParsedData1: Array<IData> = [{
     reference: 137243,
     accountNumber: 'NL93ABNA0585619023',
     description: 'Candy from Rik King',
@@ -93,9 +93,9 @@ describe('Component: AppComponent', () => {
     endBalance: -21.22
   }];
 
-    comp.data = mockParsedData;
+    comp.data = mockParsedData1;
     comp.validate();
-    fixture.detectChanges();
+    // fixture.detectChanges();
 
     expect(comp.validatedResults.duplicateReference).toEqual([]);
     expect(comp.validatedResults.invalidEndBalance).toEqual([]);
@@ -104,14 +104,14 @@ describe('Component: AppComponent', () => {
 
   it('should not validate if the assigned data is null or undefined', async(() => {
     comp.validate();
-    fixture.detectChanges();
+    // fixture.detectChanges();
     expect(comp.validatedResults).toBeUndefined();
   }));
 
   it('should not validate if the assigned data is empty array', async(() => {
     comp.data = [];
     comp.validate();
-    fixture.detectChanges();
+    // fixture.detectChanges();
     expect(comp.validatedResults).toBeUndefined();
   }));
 
