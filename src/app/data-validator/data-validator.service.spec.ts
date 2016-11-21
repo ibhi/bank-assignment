@@ -86,4 +86,33 @@ describe('Service: DataValidator', () => {
     expect(service.validate(mockData)).toEqual(expectedData);
   }));
 
+  it('should return an empty array when any one of startBalance or endBalance or mutation is null or undefined',
+    inject([DataValidatorService], (service: DataValidatorService) => {
+
+    let mockData: Array<IData> = [{
+      reference: 112806,
+      accountNumber: 'NL90ABNA0585647886',
+      description: 'Candy for Vincent King',
+      startBalance: null,
+      mutation: -38.13,
+      endBalance: -21.22
+    }, {
+      reference: 112806,
+      accountNumber: 'NL32RABO0195610843',
+      description: 'Clothes for Peter King',
+      startBalance: 14.84,
+      mutation: undefined,
+      endBalance: -49.16
+    }, {
+      reference: 159854,
+      accountNumber: 'NL56RABO0149876948',
+      description: 'Tickets from Peter Dekker',
+      startBalance: 56.42,
+      mutation: -31.99,
+      endBalance: null
+    }];
+
+    expect(service.endBalanceCheck(mockData)).toEqual([]);
+  }));
+
 });
