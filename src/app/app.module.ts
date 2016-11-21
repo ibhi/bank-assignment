@@ -13,7 +13,7 @@ import { DataTableComponent } from './data-table/data-table.component';
     AppComponent,
     FileReaderComponent,
     NavbarComponent,
-    DataTableComponent
+    DataTableComponent,
   ],
   imports: [
     BrowserModule,
