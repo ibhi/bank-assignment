@@ -12,13 +12,12 @@ import { IData } from './model/data.model';
 export class AppComponent {
   brandName = 'Rabo Bank';
   data: Array<IData>;
-  validatedResults: { duplicateReference: Array<IData>, invalidEndBalance: Array<IData> } ;
+  validatedResults: { duplicateReference: Array<IData>, invalidEndBalance: Array<IData> };
 
   constructor(private csvParser: CsvParserService, private dataValidator: DataValidatorService) {
   }
 
   onData(e) {
-    console.log(e);
     try {
       this.data = this.csvParser.parse(e);
     } catch (e) {
@@ -27,8 +26,10 @@ export class AppComponent {
   }
 
   validate() {
-    if (this.data || this.data.length > 0) {
-      this.validatedResults = this.dataValidator.validate(this.data);
+    if (this.data) {
+      if (this.data.length > 0) {
+        this.validatedResults = this.dataValidator.validate(this.data);
+      }
     }
   }
 
