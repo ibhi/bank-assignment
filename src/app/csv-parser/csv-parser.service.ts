@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IData } from './../model/data.model';
 import { dataHeaders } from './data-headers';
-
+import { isEqual } from './is-equal';
 @Injectable()
 export class CsvParserService {
 
@@ -10,11 +10,11 @@ export class CsvParserService {
   parse(csv) {
     let rows = csv.split(/\r\n|\n/);
     // Remove the headers row
-    let headerRow = rows.shift().split(',');
+    let headerRow = this.sort(rows.shift().split(','));
     let headerMap = dataHeaders();
-    let expectedHeader = Object.keys(headerMap).map(key => headerMap[key]);
+    let expectedHeader = this.sort(Object.keys(headerMap).map(key => headerMap[key]));
 
-    if (!(this.isEqual(headerRow, expectedHeader))) {
+    if (!(isEqual(headerRow, expectedHeader))) {
       throw new Error('Invalid/Incorrect csv file format');
     }
     // let headers = rows.shift().split(',');
@@ -35,21 +35,15 @@ export class CsvParserService {
     return data;
   }
 
-  private isEqual(a, b) {
-    if (a === b) {
-      return true;
-    }
-    if (a == null || b == null) {
-      return false;
-    }
-    if (a.length !== b.length) {
-      return false;
-    }
-    for (let i = 0; i < a.length; ++i) {
-      if (a[i] !== b[i]) {
-        return false;
+  private sort(array) {
+    return array.sort((a, b) => {
+      if (a < b) {
+        return -1;
       }
-    }
-    return true;
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    });
   }
 }

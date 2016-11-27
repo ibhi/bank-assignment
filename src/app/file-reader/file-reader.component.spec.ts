@@ -22,7 +22,7 @@ describe('Component: FileReader', () => {
     component.handleFileSelect(event);
 
     component.onData.subscribe((data) => {
-      expect(data).toEqual(csv);
+      expect(data).toEqual({ result: csv, type: 'text/csv'});
     });
 
   });

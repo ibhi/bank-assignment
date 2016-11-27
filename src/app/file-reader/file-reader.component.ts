@@ -6,7 +6,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./file-reader.component.css']
 })
 export class FileReaderComponent {
-  @Output() onData: EventEmitter<string> = new EventEmitter();
+  @Output() onData: EventEmitter<{}> = new EventEmitter();
 
   constructor() { }
 
@@ -14,15 +14,16 @@ export class FileReaderComponent {
 
     const file: File = event.target.files[0];
 
-    if ( file.type === 'text/csv' ) {
+    if ( file.type === 'text/csv' || file.type === 'text/xml' ) {
       const reader: FileReader = new FileReader();
 
       reader.onload = (e) => {
-        this.onData.emit(reader.result);
+        this.onData.emit({ result: reader.result, type: file.type });
       };
 
       reader.readAsText(file);
     } else {
+      alert('Please upload only csv or xml files of MT940 format');
       this.onData.emit('');
     }
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/app/navbar/navbar.component.ts</title>
+    <title>Code coverage report for src/app/csv-parser/is-equal.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">all files</a> / <a href="index.html">src/app/navbar/</a> navbar.component.ts
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/app/csv-parser/</a> is-equal.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>9/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>8/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>9/11</span>
       </div>
     </div>
   </div>
@@ -56,31 +56,46 @@
 11
 12
 13
-14</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+14
+15
+16
+17
+18
+19</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">19×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, Input } from '@angular/core';
-&nbsp;
-@Component({
-  selector: 'app-navbar',
-  template: require('./navbar.component.html'),
-  styles: [require('./navbar.component.css')]
-})
-export class NavbarComponent {
-  @Input() brandName;
-  constructor() { }
-&nbsp;
-}
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const isEqual = (a, b) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (a === b) {
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (a == null || b == null) {
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+  if (a.length !== b.length) {
+    return false;
+  }
+  for (let i = 0; i &lt; a.length; ++i) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+  return true;
+};
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>

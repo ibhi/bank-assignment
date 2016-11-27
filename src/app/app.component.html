@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-md-offset-4 col-md-4">
         <app-file-reader (onData)="onData($event)"></app-file-reader>
+        <h4 *ngIf="!(data && data.length > 0)" class="text-center">Please upload valid MT940 format csv/xml report</h4> 
     </div>
   </div>
   <div class="row">
@@ -15,7 +16,7 @@
     </div>
   </div>
   <div *ngIf="validatedResults">
-    <div class="row" *ngIf="validatedResults.duplicateReference">
+    <div class="row" *ngIf="validatedResults.duplicateReference.length > 0">
       <div class="col-md-12">
         <h2>Duplicate Reference Numbers </h2>
         <app-data-table [tableData]="validatedResults.duplicateReference"></app-data-table>

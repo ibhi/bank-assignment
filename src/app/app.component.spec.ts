@@ -70,9 +70,7 @@ describe('Component: AppComponent', () => {
 
   it('should assign data', async(() => {
     let fileReader = de.query(By.directive(FileReaderComponent)).componentInstance;
-    fileReader.onData.emit(mockData);
-    // comp.onData(mockData);
-    // fixture.detectChanges();
+    fileReader.onData.emit({ result: mockData , type: 'text/csv'});
     expect(comp.data).toEqual(mockParsedData);
   }));
 
@@ -95,7 +93,6 @@ describe('Component: AppComponent', () => {
 
     comp.data = mockParsedData1;
     comp.validate();
-    // fixture.detectChanges();
 
     expect(comp.validatedResults.duplicateReference).toEqual([]);
     expect(comp.validatedResults.invalidEndBalance).toEqual([]);
@@ -104,14 +101,12 @@ describe('Component: AppComponent', () => {
 
   it('should not validate if the assigned data is null or undefined', async(() => {
     comp.validate();
-    // fixture.detectChanges();
     expect(comp.validatedResults).toBeUndefined();
   }));
 
   it('should not validate if the assigned data is empty array', async(() => {
     comp.data = [];
     comp.validate();
-    // fixture.detectChanges();
     expect(comp.validatedResults).toBeUndefined();
   }));
 
