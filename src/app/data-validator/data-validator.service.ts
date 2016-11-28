@@ -30,19 +30,23 @@ export class DataValidatorService {
     return invalidEndBalanceData;
   }
 
-  duplicateReferenceCheck(data: Array<IData>): Array<IData> {
+  duplicateReferenceCheck(data) {
     let sortedData = this.sortByReference(data);
-    let duplicateReferenceData = [];
+
     sortedData.reduce((prev, curr) => {
       if (prev.reference === curr.reference) {
-        duplicateReferenceData.push(curr);
+        // duplicateReferenceData.push(curr);
+        prev._duplicate = true;
+        curr._duplicate = true;
       }
       return curr;
     });
+    let duplicateReferenceData = sortedData.filter(record => record._duplicate === true );
+    duplicateReferenceData.forEach(record => delete record._duplicate );
     return duplicateReferenceData;
   }
 
-  private sortByReference(data: Array<IData>): Array<IData> {
+  private sortByReference(data) {
     data = [...data];
     return data.sort((prev, curr) => {
       if (prev.reference > curr.reference ) {

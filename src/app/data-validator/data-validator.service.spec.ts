@@ -50,7 +50,7 @@ describe('Service: DataValidator', () => {
       mutation: +34.32,
       endBalance: 49.16
     }];
-    expect(service.duplicateReferenceCheck(mockData)).toEqual([mockData[1]]);
+    expect(service.duplicateReferenceCheck(mockData)).toEqual(mockData);
   }));
 
   it('should check for duplicate reference and invalid end balance rows and return them',
@@ -80,7 +80,7 @@ describe('Service: DataValidator', () => {
     }];
 
     let expectedData = {
-      duplicateReference: [mockData[1]],
+      duplicateReference: [mockData[0], mockData[1]],
       invalidEndBalance: [mockData[1]]
     };
     expect(service.validate(mockData)).toEqual(expectedData);
